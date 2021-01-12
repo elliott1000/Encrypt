@@ -35,7 +35,24 @@ while True:
                 emessage = emessage + i
                 continue
         print(emessage)
-
+    #decrypt
+    if req.startswith('decrypt'):
+        arg = req.split('-')
+        with open(arg[2]+'.txt', 'r') as file:
+            keysep = file.read().split('\n')
+        dmessage = ''
+        ogmessage = arg[1]
+        codel = keysep[0]
+        going = True
+        while going:
+            if len(ogmessage) >= 1:
+                if ogmessage[0] not in char:
+                    dmessage += ogmessage[0]
+                    ogmessage = ogmessage[1:]
+                else:
+                    vcode = ogmessage[:int(codel)]
+                    ogmessage = ogmessage[int(codel):]
+                    
 
 
 
