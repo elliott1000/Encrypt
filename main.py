@@ -52,7 +52,13 @@ while True:
                 else:
                     vcode = ogmessage[:int(codel)]
                     ogmessage = ogmessage[int(codel):]
-                    
+                    for i in keysep:
+                        if i.endswith(vcode):
+                            dmessage += i[0]
+            else:
+                going = False
+        print(dmessage)
+
 
 
 
