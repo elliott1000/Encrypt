@@ -25,36 +25,35 @@ while True:
         emessage = ''
         if len(arg) == 3:
             ogmessage = arg[1].lower()
+            wbool = False
         #enfiles
         elif len(arg) == 4:
             if arg[3] == 'file':
                 with open(arg[1]+'.txt', 'r') as file:
                     ogmessage = file.read()
                 open('e'+arg[1]+'.txt', 'x')
-
+                wbool = True
 
         with open(arg[2]+'.txt', 'r') as file:
             keysep = file.read().split('\n')
         for i in ogmessage:
             for r in keysep:
                 if r.startswith(i):
-                    if len(arg) == 3:
+                    if wbool == False:
                         emessage = emessage + r[2:]
                         break
-                    elif len(arg) == 4:
-                        if arg[3] == 'file':
-                            with open('e'+arg[1]+'.txt', 'a') as file:
-                                file.write(r[2:])
-                        break
-            else:
-                if len(arg) == 4:
-                    if arg[3] == 'file':
+                    elif wbool == True:
                         with open('e'+arg[1]+'.txt', 'a') as file:
-                            file.write(i)
-                else:
+                            file.write(r[2:])
+                            break
+            else:
+                if wbool == True:
+                    with open('e'+arg[1]+'.txt', 'a') as file:
+                        file.write(i)
+                elif wbool == False:
                     emessage = emessage + i
                 continue
-        if len(arg) == 3:
+        if wbool == False:
             print(emessage)
     #decrypt
     if req.startswith('decrypt'):
