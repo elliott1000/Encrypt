@@ -23,7 +23,13 @@ while True:
     if req.startswith('encrypt'):
         arg = req.split('-')
         emessage = ''
-        ogmessage = arg[1].lower()
+        if len(arg) == 3:
+            ogmessage = arg[1].lower()
+            bfile = False
+        elif len(arg) == 4 and arg[3] == 'file':
+            with open(arg[1]+'.txt','r') as file:
+                ogmessage = file.read()
+            bfile = True
         with open(arg[2]+'.txt', 'r') as file:
             keysep = file.read().split('\n')
         for i in ogmessage:
@@ -34,7 +40,12 @@ while True:
             else:
                 emessage = emessage + i
                 continue
-        print(emessage)
+        if bfile == False:
+            print(emessage)
+        elif bfile == True:
+            open('e'+arg[1]+'.txt','x')
+            with open('e'+arg[1]+'.txt','a') as file:
+                file.write(emessage)
     #decrypt
     if req.startswith('decrypt'):
         arg = req.split('-')
