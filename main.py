@@ -52,7 +52,13 @@ while True:
         with open(arg[2]+'.txt', 'r') as file:
             keysep = file.read().split('\n')
         dmessage = ''
-        ogmessage = arg[1]
+        if len(arg) == 3:
+            ogmessage = arg[1]
+            bfile = False
+        elif len(arg) == 4 and arg[3] == 'file':
+            with open(arg[1]+'.txt','r') as file:
+                ogmessage = file.read()
+            bfile = True
         codel = keysep[0]
         going = True
         while going:
@@ -68,4 +74,9 @@ while True:
                             dmessage += i[0]
             else:
                 going = False
-        print(dmessage)
+        if bfile == False:
+            print(dmessage)
+        elif bfile:
+            open('d'+arg[1]+'.txt','x')
+            with open('d'+arg[1]+'.txt','a') as file:
+                file.write(dmessage) 
