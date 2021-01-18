@@ -8,5 +8,4 @@ Ex. if you use 3, then the code for all charecters, will be three characters lon
 the third parameter will be what key you want to use to encrypt/decrypt the message. You can add 'file' as a fourth parameter, if you want to encrypt/decrypt a hole file,
 in which case the second parameter will be the name of the file. (Only txt files supported).
 
-Note: Do not include the extension of a file whenever it is being used, that is automatic.
-Note: Using a dash any of the commands might glitch out the program since dashes are used as seperators
+Note: Do not include the extension of a file whenever it is being used, that is automatic.Also, Using a dash any of the commands might glitch out the program since dashes are used as seperators
